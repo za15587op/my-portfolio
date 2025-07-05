@@ -338,14 +338,14 @@ const Skills = () => {
               Skills
             </span>
           </motion.h2>
-          <motion.p
+          {/* <motion.p
             className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             Passionate about creating amazing digital experiences with cutting-edge technologies
-          </motion.p>
+          </motion.p> */}
         </motion.div>
 
         {/* Skills Grid */}

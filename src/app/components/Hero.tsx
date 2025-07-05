@@ -35,12 +35,12 @@ const Hero = () => {
                 backgroundImage: "linear-gradient(90deg, rgb(var(--primary)), rgb(var(--secondary)))"
               }}
             >
-              John Doe
+              Pongsak Piriyayanyong
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto">
-            Full Stack Developer & UI/UX Designer crafting beautiful digital experiences
+            Full Stack Developer
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
