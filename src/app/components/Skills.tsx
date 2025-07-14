@@ -1,182 +1,3 @@
-// "use client";
-// import React, { useEffect, useRef, useState } from "react";
-// import { motion, Variants } from "framer-motion";
-// import { FaReact, FaPython, FaProjectDiagram } from "react-icons/fa";
-// import {
-//   SiNextdotjs,
-//   SiAngular,
-//   SiHtml5,
-//   SiCss3,
-//   SiTailwindcss,
-//   SiBootstrap,
-//   SiTypescript,
-//   SiDotnet,
-//   SiMysql,
-//   SiPostgresql,
-//   SiFigma,
-// } from "react-icons/si";
-
-// const iconMap: Record<string, React.ReactNode> = {
-//   React: <FaReact className="text-cyan-400" size={32} />,
-//   Nextjs: <SiNextdotjs className="text-white dark:text-gray-200" size={32} />,
-//   Angular: <SiAngular className="text-red-500" size={32} />,
-//   HTML: <SiHtml5 className="text-orange-500" size={32} />,
-//   CSS: <SiCss3 className="text-blue-500" size={32} />,
-//   Tailwind: <SiTailwindcss className="text-cyan-400" size={32} />,
-//   Bootstrap: <SiBootstrap className="text-purple-500" size={32} />,
-//   TypeScript: <SiTypescript className="text-blue-400" size={32} />,
-//   "C# .NET": <SiDotnet className="text-violet-400" size={32} />,
-//   Python: <FaPython className="text-yellow-400" size={32} />,
-//   MySQL: <SiMysql className="text-yellow-300" size={32} />,
-//   PostgreSQL: <SiPostgresql className="text-blue-300" size={32} />,
-//   Figma: <SiFigma className="text-pink-400" size={32} />,
-//   "Draw.io": <FaProjectDiagram className="text-orange-400" size={32} />,
-// };
-
-// const Skills = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const sectionRef = useRef<HTMLElement>(null);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setIsVisible(true);
-//         }
-//       },
-//       { threshold: 0.3 }
-//     );
-
-//     if (sectionRef.current) {
-//       observer.observe(sectionRef.current);
-//     }
-
-//     return () => observer.disconnect();
-//   }, []);
-
-//   const skills = [
-//     { name: "Nextjs", category: "Frontend" },
-//     { name: "Angular", category: "Frontend" },
-//     { name: "HTML", category: "Frontend" },
-//     { name: "CSS", category: "Frontend" },
-//     { name: "Tailwind", category: "Frontend" },
-//     { name: "Bootstrap", category: "Frontend" },
-//     { name: "TypeScript", category: "Frontend" },
-//     { name: "C# .NET", category: "Backend" },
-//     { name: "Python", category: "Backend" },
-//     { name: "MySQL", category: "Database" },
-//     { name: "PostgreSQL", category: "Database" },
-//     { name: "Figma", category: "Design" },
-//     { name: "Draw.io", category: "Design" },
-//   ];
-
-//   const categories = ["Frontend", "Backend", "Database", "Design"];
-
-//   const containerVariants: Variants = {
-//     hidden: { opacity: 0 },
-//     visible: {
-//       opacity: 1,
-//       transition: { staggerChildren: 0.2 },
-//     },
-//   };
-//   const itemVariants: Variants = {
-//     hidden: { y: 30, opacity: 0 },
-//     visible: {
-//       y: 0,
-//       opacity: 1,
-//       transition: { duration: 0.6, ease: "easeOut" },
-//     },
-//   };
-
-//   return (
-//     <section
-//       id="skills"
-//       ref={sectionRef}
-//       className="py-20 bg-background relative overflow-hidden"
-//     >
-//       {/* Background animation elements */}
-//       <div className="absolute inset-0 pointer-events-none">
-//         <motion.div
-//           className="absolute top-10 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl"
-//           animate={{ y: [0, 20, 0] }}
-//           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-//         />
-//         <motion.div
-//           className="absolute bottom-10 right-1/4 w-40 h-40 bg-secondary/10 rounded-full blur-xl"
-//           animate={{ y: [0, -20, 0] }}
-//           transition={{
-//             duration: 10,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//             delay: 2,
-//           }}
-//         />
-//       </div>
-//       <motion.div
-//         className="container mx-auto px-6 relative z-10"
-//         variants={containerVariants}
-//         initial="hidden"
-//         animate={isVisible ? "visible" : "hidden"}
-//       >
-//         <motion.h2
-//           className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-gray-100 mb-16 tracking-tight"
-//           variants={itemVariants}
-//         >
-//           My
-//           <span className="ml-2 bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-extrabold drop-shadow-lg">
-//             Skills
-//           </span>
-//         </motion.h2>
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-//           {categories.map((category, categoryIndex) => (
-//             <motion.div
-//               key={category}
-//               className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-cyan-200 dark:border-cyan-800 hover:border-purple-400 hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
-//               variants={itemVariants}
-//               style={{ animationDelay: `${categoryIndex * 0.2}s` }}
-//             >
-//               <h3 className="text-lg font-semibold text-cyan-500 mb-8 text-center tracking-wide uppercase">
-//                 {category}
-//               </h3>
-//               <div className="flex flex-wrap justify-center gap-6">
-//                 {skills
-//                   .filter((skill) => skill.category === category)
-//                   .map((skill, skillIndex) => (
-//                     <motion.div
-//                       key={skill.name}
-//                       className="flex flex-col items-center mb-2"
-//                       variants={itemVariants}
-//                       style={{
-//                         animationDelay: `${
-//                           categoryIndex * 0.2 + skillIndex * 0.1
-//                         }s`,
-//                       }}
-//                     >
-//                       <div className="relative group">
-//                         <div className="w-16 h-16 flex items-center justify-center rounded-xl bg-white/80 dark:bg-gray-800/80 border-2 border-cyan-200 dark:border-cyan-700 group-hover:border-purple-400 shadow-lg transition-all duration-300">
-//                           {iconMap[skill.name] || (
-//                             <FaReact className="text-gray-400" size={32} />
-//                           )}
-//                         </div>
-//                         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2 px-2 py-1 rounded bg-gray-900/90 text-xs text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg z-20 whitespace-nowrap">
-//                           {skill.name}
-//                         </span>
-//                       </div>
-//                     </motion.div>
-//                   ))}
-//               </div>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </motion.div>
-//     </section>
-//   );
-// };
-
-// export default Skills;
-
-
-
 "use client";
 import React, {  useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -248,74 +69,14 @@ const Skills = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="min-h-screen py-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950"
+      className="min-h-screen py-20 relative overflow-hidden w-full bg-[#0f172a]"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-400/10 to-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
-
-      {/* Floating Particles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-20"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 100 - 50, 0],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 10 + Math.random() * 10,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
+        }}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -338,14 +99,6 @@ const Skills = () => {
               Skills
             </span>
           </motion.h2>
-          {/* <motion.p
-            className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Passionate about creating amazing digital experiences with cutting-edge technologies
-          </motion.p> */}
         </motion.div>
 
         {/* Skills Grid */}
@@ -482,7 +235,7 @@ const Skills = () => {
                 animate={isInView ? { scale: 1 } : { scale: 0 }}
                 transition={{ duration: 0.8, delay: 1.8 }}
               >
-                {skills.length}+
+                {skills.length}
               </motion.div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
             </div>
@@ -506,3 +259,20 @@ const Skills = () => {
 };
 
 export default Skills;
+
+
+
+
+
+<div className="min-h-screen w-full bg-[#fefcff] relative">
+  {/* Dreamy Sky Pink Glow */}
+  <div
+    className="absolute inset-0 z-0"
+    style={{
+      backgroundImage: `
+        radial-gradient(circle at 30% 70%, rgba(173, 216, 230, 0.35), transparent 60%),
+        radial-gradient(circle at 70% 30%, rgba(255, 182, 193, 0.4), transparent 60%)`,
+    }}
+  />
+    {/* Your Content/Components */}
+</div>

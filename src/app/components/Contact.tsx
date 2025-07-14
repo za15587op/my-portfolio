@@ -43,16 +43,17 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-dark-bg">
+    <section id="contact" ref={sectionRef} className="py-20 min-h-screen w-full bg-[#0f172a] relative">
+     
       <div className="container mx-auto px-6">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-center text-light-text mb-16">
-            Get In <span className="text-gradient">Touch</span>
+            Contact<span className="text-gradient"> Us</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div>
             {/* Contact Info */}
-            <div className="space-y-8">
+            <div >
               <div>
                 <h3 className="text-2xl font-bold text-light-text mb-6">Let s work together</h3>
                 <p className="text-light-text/80 text-lg leading-relaxed mb-8">
@@ -68,7 +69,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-light-text font-medium">Email</h4>
-                    <p className="text-light-text/80">john.doe@example.com</p>
+                    <p className="text-light-text/80">pongsak.pp04@gmail.com</p>
                   </div>
                 </div>
 
@@ -78,7 +79,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-light-text font-medium">Phone</h4>
-                    <p className="text-light-text/80">+1 (555) 123-4567</p>
+                    <p className="text-light-text/80">+66 984793379</p>
                   </div>
                 </div>
 
@@ -88,14 +89,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-light-text font-medium">Location</h4>
-                    <p className="text-light-text/80">San Francisco, CA</p>
+                    <p className="text-light-text/80">Hat Yai, Songkhla</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-medium-bg p-8 rounded-xl">
+            {/* <div className="bg-medium-bg p-8 rounded-xl">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-light-text font-medium mb-2">
@@ -152,7 +153,7 @@ const Contact = () => {
                   Send Message
                 </button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

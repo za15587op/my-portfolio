@@ -17,7 +17,13 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen bg-background flex items-center justify-center overflow-hidden w-full bg-[#0f172a] relative">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
+        }}
+      />
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
