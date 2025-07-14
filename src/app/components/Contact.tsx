@@ -1,14 +1,14 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
+
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   message: ''
+  // });
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,19 +28,19 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    toast("Message Sent! Thank you for your message. I'll get back to you soon!");
-    setFormData({ name: '', email: '', message: '' });
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log('Form submitted:', formData);
+  //   toast("Message Sent! Thank you for your message. I'll get back to you soon!");
+  //   setFormData({ name: '', email: '', message: '' });
+  // };
 
   return (
     <section id="contact" ref={sectionRef} className="py-20 min-h-screen w-full bg-[#0f172a] relative">
