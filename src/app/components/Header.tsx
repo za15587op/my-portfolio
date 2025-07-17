@@ -38,7 +38,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {['About', 'Experience', 'Skills', 'Projects', 'Contact'].map((item) => (
+            {['About', 'Experience', 'Skills', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}

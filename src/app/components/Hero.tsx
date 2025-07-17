@@ -33,18 +33,14 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-primary mb-6 drop-shadow-lg tracking-tight">
             Hi, I am{' '}
             <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(90deg, rgb(var(--primary)), rgb(var(--secondary)))"
-              }}
+              className="inline-block bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-x px-2 py-1  hover:scale-105 transition-transform duration-300"
             >
               Pongsak Piriyayanyong
             </span>
           </h1>
-          
           <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto">
             Full Stack Developer
           </p>
