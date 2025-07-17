@@ -1,7 +1,6 @@
 "use client";
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-
 
 import {
   SiNextdotjs,
@@ -16,10 +15,9 @@ import {
   SiPostgresql,
   SiFigma,
 } from "react-icons/si";
-import { FaProjectDiagram, FaPython, FaReact } from "react-icons/fa";
+import { FaProjectDiagram } from "react-icons/fa";
 
 const iconMap: Record<string, React.ReactNode> = {
-  React: <FaReact className="text-cyan-400" size={32} />,
   Nextjs: <SiNextdotjs className="text-white dark:text-gray-200" size={32} />,
   Angular: <SiAngular className="text-red-500" size={32} />,
   HTML: <SiHtml5 className="text-orange-500" size={32} />,
@@ -28,7 +26,6 @@ const iconMap: Record<string, React.ReactNode> = {
   Bootstrap: <SiBootstrap className="text-purple-500" size={32} />,
   TypeScript: <SiTypescript className="text-blue-400" size={32} />,
   "C# .NET": <SiDotnet className="text-violet-400" size={32} />,
-  Python: <FaPython className="text-yellow-400" size={32} />,
   MySQL: <SiMysql className="text-yellow-300" size={32} />,
   PostgreSQL: <SiPostgresql className="text-blue-300" size={32} />,
   Figma: <SiFigma className="text-pink-400" size={32} />,
@@ -42,7 +39,6 @@ const Skills = () => {
   console.log(hoveredSkill);
 
   const skills = [
-    { name: "React", category: "Frontend" },
     { name: "Nextjs", category: "Frontend" },
     { name: "Angular", category: "Frontend" },
     { name: "HTML", category: "Frontend" },
@@ -51,7 +47,6 @@ const Skills = () => {
     { name: "Bootstrap", category: "Frontend" },
     { name: "TypeScript", category: "Frontend" },
     { name: "C# .NET", category: "Backend" },
-    { name: "Python", category: "Backend" },
     { name: "MySQL", category: "Database" },
     { name: "PostgreSQL", category: "Database" },
     { name: "Figma", category: "Design" },
@@ -62,7 +57,7 @@ const Skills = () => {
     { name: "Frontend", icon: "🎨", gradient: "from-cyan-400 to-blue-500" },
     { name: "Backend", icon: "⚡", gradient: "from-purple-500 to-indigo-600" },
     { name: "Database", icon: "🗄️", gradient: "from-green-400 to-emerald-500" },
-    { name: "Design", icon: "✨", gradient: "from-pink-400 to-rose-500" }
+    { name: "Design", icon: "✨", gradient: "from-pink-400 to-rose-500" },
   ];
 
   return (
@@ -88,15 +83,16 @@ const Skills = () => {
           <motion.h2
             className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6"
             initial={{ scale: 0.5, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+            animate={
+              isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
+            }
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           >
             <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
-              My
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
-              Skills
+              My {" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                Skills
+              </span>
             </span>
           </motion.h2>
         </motion.div>
@@ -104,40 +100,47 @@ const Skills = () => {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {categories.map((category, categoryIndex) => {
-            const categorySkills = skills.filter(skill => skill.category === category.name);
-            
+            const categorySkills = skills.filter(
+              (skill) => skill.category === category.name
+            );
+
             return (
               <motion.div
                 key={category.name}
                 className="group relative"
                 initial={{ opacity: 0, y: 100, rotateX: -15 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  y: 0, 
-                  rotateX: 0 
-                } : { 
-                  opacity: 0, 
-                  y: 100, 
-                  rotateX: -15 
-                }}
-                transition={{ 
-                  duration: 0.8, 
+                animate={
+                  isInView
+                    ? {
+                        opacity: 1,
+                        y: 0,
+                        rotateX: 0,
+                      }
+                    : {
+                        opacity: 0,
+                        y: 100,
+                        rotateX: -15,
+                      }
+                }
+                transition={{
+                  duration: 0.8,
                   delay: categoryIndex * 0.2,
-                  ease: "easeOut"
+                  ease: "easeOut",
                 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   rotateY: 5,
-                  z: 50
+                  z: 50,
                 }}
                 style={{ perspective: 1000 }}
               >
                 {/* Card */}
                 <div className="relative h-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 lg:p-8 shadow-xl border border-white/20 dark:border-gray-700/20 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 dark:hover:shadow-purple-500/20">
-                  
                   {/* Card Background Gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}
+                  />
+
                   {/* Floating Orb */}
                   <motion.div
                     className={`absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br ${category.gradient} rounded-full opacity-20 blur-xl`}
@@ -149,7 +152,7 @@ const Skills = () => {
                       duration: 4,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: categoryIndex * 0.5
+                      delay: categoryIndex * 0.5,
                     }}
                   />
 
@@ -183,16 +186,19 @@ const Skills = () => {
                         key={skill.name}
                         className="group/skill relative"
                         initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          delay: (categoryIndex * 0.2) + (skillIndex * 0.1) + 0.5 
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: -20 }
+                        }
+                        transition={{
+                          duration: 0.6,
+                          delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.5,
                         }}
                         onHoverStart={() => setHoveredSkill(skill.name)}
                         onHoverEnd={() => setHoveredSkill(null)}
                       >
                         <div className="flex items-center gap-4 p-3 rounded-2xl bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm border border-white/30 dark:border-gray-600/30 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                          
                           {/* Skill Icon */}
                           <motion.div
                             className="relative flex-shrink-0"
@@ -237,7 +243,9 @@ const Skills = () => {
               >
                 {skills.length}
               </motion.div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Technologies
+              </div>
             </div>
             <div className="w-px h-12 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
             <div className="text-center">
@@ -249,7 +257,9 @@ const Skills = () => {
               >
                 4
               </motion.div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Categories</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Categories
+              </div>
             </div>
           </div>
         </motion.div>
@@ -259,10 +269,6 @@ const Skills = () => {
 };
 
 export default Skills;
-
-
-
-
 
 <div className="min-h-screen w-full bg-[#fefcff] relative">
   {/* Dreamy Sky Pink Glow */}
@@ -274,5 +280,5 @@ export default Skills;
         radial-gradient(circle at 70% 30%, rgba(255, 182, 193, 0.4), transparent 60%)`,
     }}
   />
-    {/* Your Content/Components */}
-</div>
+  {/* Your Content/Components */}
+</div>;

@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from "framer-motion";
 
 const Experience = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -75,14 +77,27 @@ const Experience = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-16 relative">
-          My{' '}
-          <span 
-            className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent"
+
+        <motion.div
+          className="text-center mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h2
+            className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           >
-            Experience
-          </span>
-        </h2>
+            <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
+              My{" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                Experience
+              </span>
+            </span>
+          </motion.h2>
+        </motion.div>
 
         <div className="relative">
           <div className="space-y-24">
@@ -110,9 +125,9 @@ const Experience = () => {
                 </div>
 
                 {/* Enhanced content card */}
-                <div className={`flex-1 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
+                <div className={`flex-1 ml-12 md:ml-0`}>
                   <div
-                    className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-6 rounded-xl border border-purple-500/20 dark:border-cyan-400/20 hover:border-cyan-400/40 dark:hover:border-purple-400/40 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 group"
+                    className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-6 rounded-xl border border-purple-500/20 dark:border-cyan-400/20 hover:border-cyan-400/40 dark:hover:border-purple-400/40 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 group text-left"
                   >
                     <div className="flex flex-col md:flex-row items-start gap-4 mb-4">
                       <div className={`flex-1 ${index % 2 === 0 ? 'md:order-2' : ''}`}>

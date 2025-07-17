@@ -1,6 +1,6 @@
-"use client"
-import { useEffect, useRef, useState } from 'react';
-
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,6 +10,7 @@ const Contact = () => {
   //   message: ''
   // });
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,22 +44,51 @@ const Contact = () => {
   // };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 min-h-screen w-full bg-[#0f172a] relative">
-     
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-20 min-h-screen w-full bg-[#0f172a] relative"
+    >
       <div className="container mx-auto px-6">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-light-text mb-16">
-            Contact<span className="text-gradient"> Us</span>
-          </h2>
+        <div
+          className={`transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.h2
+              className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={
+                isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
+              }
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            >
+              <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
+                Contact{" "}
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                  Us
+                </span>
+              </span>
+            </motion.h2>
+          </motion.div>
 
           <div>
             {/* Contact Info */}
-            <div >
+            <div>
               <div>
-                <h3 className="text-2xl font-bold text-light-text mb-6">Let s work together</h3>
+                <h3 className="text-2xl font-bold text-light-text mb-6">
+                  Let s work together
+                </h3>
                 <p className="text-light-text/80 text-lg leading-relaxed mb-8">
-                  I m always interested in new opportunities and exciting projects. 
-                  Whether you have a question or just want to say hi, feel free to reach out!
+                  I m always interested in new opportunities and exciting
+                  projects. Whether you have a question or just want to say hi,
+                  feel free to reach out!
                 </p>
               </div>
 

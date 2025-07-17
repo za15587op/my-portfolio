@@ -12,22 +12,16 @@ const Footer = () => {
           
           <div className="flex space-x-6">
             <a
-              href="#"
+              href="https://www.linkedin.com/in/pongsak-piriyayanyong/"
               className="text-light-text/80 hover:text-accent-cyan transition-colors duration-300"
             >
               LinkedIn
             </a>
             <a
-              href="#"
+              href="https://github.com/za15587op"
               className="text-light-text/80 hover:text-accent-cyan transition-colors duration-300"
             >
               GitHub
-            </a>
-            <a
-              href="#"
-              className="text-light-text/80 hover:text-accent-cyan transition-colors duration-300"
-            >
-              Twitter
             </a>
           </div>
         </div>

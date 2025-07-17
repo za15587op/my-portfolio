@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useInView } from "framer-motion";
 import { FaLaptopCode } from "react-icons/fa";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,24 +54,38 @@ const About = () => {
       className="py-20  duration-500 overflow-hidden min-h-screen w-full bg-[#0f172a] relative"
     >
       <div
-    className="absolute inset-0 z-0"
-    style={{
-      backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
-    }}
-  />
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
+        }}
+      />
       <motion.div
         className="container mx-auto px-6"
         variants={containerVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
       >
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 relative inline-block">
-            About
-            <span className="ml-2 bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-extrabold drop-shadow-lg">
-              Me
+        <motion.div
+          className="text-center mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h2
+            className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={
+              isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
+            }
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          >
+            <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
+              About{" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                Me
+              </span>
             </span>
-          </h2>
+          </motion.h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -79,12 +94,13 @@ const About = () => {
               className="text-gray-700 dark:text-gray-200 text-lg leading-relaxed transition-colors duration-500"
               variants={itemVariants}
             >
-              ผมชื่อนิว จบจากคณะวิทยาศาสตร์และนวัตกรรมดิจิทัล
-              สาขาวิทยาการคอมพิวเตอร์ ในปี 3
-              ผมและเพื่อนได้มีการรับงานพัฒนาเว็บไซต์จากอาจารย์ และในปี 4
-              ผมได้ไปฝึกงานที่บริษัทซอฟสแคร์ 1999 ในตำแหน่ง Software Developer
-              Trainee ทำให้ผมมีความสนใจในการเขียนโปรแกรม และอยากเป็น Full- Stack
-              Developer
+              My name is New. I graduated from the Faculty of Science and
+              Digital Innovation, majoring in Computer Science. In my third
+              year, my friends and I took on a web development project for a
+              professor. During my fourth year, I interned at SoftsCare 1999 as
+              a Software Developer Trainee. These experiences sparked my passion
+              for programming and inspired me to pursue a career as a Full-Stack
+              Developer.
             </motion.p>
 
             <motion.div
@@ -100,7 +116,7 @@ const About = () => {
                   <span className="font-medium text-2xl">3</span>
                 </span>
                 <span className="text-gray-700 dark:text-gray-200 text-sm transition-colors duration-500">
-                  โปรเจคที่เสร็จแล้ว
+                  Completed Projects
                 </span>
               </motion.div>
               <motion.div
@@ -109,10 +125,10 @@ const About = () => {
               >
                 <span className="text-purple-500 dark:text-cyan-400 flex items-center gap-2 mb-2 transition-colors duration-500">
                   <FaLaptopCode />
-                  <span className="font-medium text-2xl">1</span>
+                  <span className="font-medium text-2xl"> &lt; 1</span>
                 </span>
                 <span className="text-gray-700 dark:text-gray-200 text-sm transition-colors duration-500">
-                  ปีประสบการณ์ฝึกงาน
+                  Internship Experience
                 </span>
               </motion.div>
             </motion.div>
@@ -150,5 +166,5 @@ export default About;
       backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
     }}
   />
-     {/* Your Content/Components */}
-</div>
+  {/* Your Content/Components */}
+</div>;
